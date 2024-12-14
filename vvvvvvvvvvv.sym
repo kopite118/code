@@ -1,0 +1,88 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+006.0   Data_Pin
+008     PSP_DATA
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+020-02D message1
+02E-03B message2
+03C.0   Time_out
+03D     T_byte1
+03E     T_byte2
+03F     RH_byte1
+040     RH_byte2
+041     CheckSum
+042     nd
+043     @TRIS_C
+044     @DIV88.P1
+044     @delay_ms1.P2
+044     check.x
+044     Read_Data.i
+044     hienthi8led7doan.@SCRATCH1
+045     Read_Data.k
+045     @DIV88.P1
+046     Read_Data._data
+046     @DIV88.@SCRATCH1
+047     Read_Data.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+086.0   Data_Pin_Direction
+09C.6   C1OUT
+09C.7   C2OUT
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  Maled.call
+000008  Maled.data
+000012  @delay_ms1
+000026  start_signal
+000039  check_response
+000053  Read_Data
+0000A2  check
+0000E5  @DIV88
+0000FA  hienthi8led7doan
+00015F  MAIN
+00015F  @cinit1
+00016B  @cinit2
+
+Project Directory:
+    C:\Users\ADMIN\Desktop\New folder (5)\
+
+Project Files:
+    vvvvvvvvvvv.c                                           [13-Dec-23 10:22  CRC=9AAD58FE]
+    vvvvvvvvvvv.h                                           [26-Oct-23 23:24  CRC=2EB8624F]
+    ..\..\..\..\Program Files (x86)\PICC\Devices\16F877A.h  [18-Apr-14 16:56  CRC=4F277C97]
+
+Source signature=67B4B47B
+
+Units:
+    vvvvvvvvvvv (main)
+
+Compiler Settings:
+    Processor:      PIC16F877A
+    Pointer Size:   16
+    ADC Range:      0-65535
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   vvvvvvvvvvv.xsym
+    Errors:      vvvvvvvvvvv.err
+    Ext Symbols: vvvvvvvvvvv.esym
+    INHX8:       vvvvvvvvvvv.hex
+    Symbols:     vvvvvvvvvvv.sym
+    List:        vvvvvvvvvvv.lst
+    Debug/COFF:  vvvvvvvvvvv.cof
+    Project:     vvvvvvvvvvv.ccspjt
+    Call Tree:   vvvvvvvvvvv.tre
+    Statistics:  vvvvvvvvvvv.STA

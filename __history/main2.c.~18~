@@ -1,0 +1,56 @@
+#include <main2.h>
+
+unsigned int8 MaLed[]={0xC0, 0xF9,0xA4,0x80,0x99, 0x92, 0x82, 0xF8,0x80,0x90};
+
+void _TachSo(unsigned int8 Dulieu, unsigned int8 &HangChuc, unsigned int8 &HangDonVi); 
+void _HienThiNhietDo(unsigned int8 HangChuc, unsigned int8 HangDonVi);
+void _HienThiDoAm(unsigned int8 HangChuc, unsigned int8 HangDonVi);
+
+void main()
+{
+SET_TRIS_D(0X00);
+   SET_TRIS_C(0X00);
+//khai bao bien cuc bo o day
+   unsigned int8 dh_nhiet_do, dh_nhiet_do2, dh_do_am, dh_do_am2;
+   unsigned int8 HangChuc, HangDonVi;
+   delay_ms(500);
+   delay_ms(500);
+   output_bit(LE_1,0);
+   output_bit(LE_2,0);
+   output_bit(LE_3,0);
+   output_bit(LE_4,0);
+
+   while(TRUE)
+   {
+//TODO: User Code
+      if(DHT_GetTemHumi(dh_nhiet_do, dh_nhiet_do2, dh_do_am, dh_do_am2))
+      {
+           _TachSo(dh_nhiet_do,HangChuc,HangDonVi);
+           _HienThiNhietDo(HangChuc, HangDonVi);
+         
+       }
+
+    
+      }
+   }  
+
+
+void _TachSo(unsigned int8 Dulieu, unsigned int8 &HangChuc, unsigned int8 &HangDonVi)
+{
+HangChuc =DuLieu/10;
+HangDonVi = Dulieu%10; 
+}
+void _HienThiNhietDo(unsigned int8 HangChuc, unsigned int8 HangDonVi)
+{
+
+output_bit(LE_1,1);
+output_d(MaLed[HangChuc]);
+output_bit(LE_1,0);
+delay_ms(10);
+output_bit(LE_2,1);
+output_d(MaLed[HangDonVi]);
+output_bit(LE_2,0);
+delay_ms(10);
+}
+
+

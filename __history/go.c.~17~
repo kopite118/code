@@ -1,0 +1,51 @@
+
+#include <16f887.h>
+#DEVICE ADC=10
+#FUSES HS
+#USE DELAY(CLOCK=20M)
+
+unsigned int8 const Maled[10] = {0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x90};
+unsigned int16 nd;
+unsigned int8 DLHT_8LD[8] = {0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x9C,0xC6};
+void hienthi8led7doan(){
+  
+   UNSIGNED INT8 I,QUET;
+   QUET=0xFE;
+   FOR(I=0;I<8;I++)
+   {
+   OUTPUT_D(QUET);
+   OUTPUT_C(DLHT_8LD[I]);
+   DELAY_US(300);
+   OUTPUT_D(0xFF);
+   QUET=(QUET<<1)+1;
+}
+}
+#INT_TIMER1
+void NGAT_TIMER1_QUETLED()
+{
+   SET_TIMER1(-1000);
+   hienthi8led7doan();
+}
+void main()
+{  
+   SET_TRIS_D(0X00);
+   SET_TRIS_C(0X00);
+   enable_interrupts(INT_TIMER1);
+   enable_interrupts(GLOBAL);
+   setup_timer_1(T1_INTERNAL|T1_DIV_BY_8);
+   SET_TIMER1(-5000);
+   setup_ADC(ADC_clock_internal);
+   setup_ADC_ports(SAN0|VSS_VDD);
+   set_ADC_channel(0);
+   
+   DELAY_MS(10);
+  
+   while(TRUE)
+   {
+      ND = READ_ADC();
+      ND = 30;
+     DLHT_8LD[5] =Maled[ND%10];
+     DLHT_8LD[4]=Maled[ND/10];
+      delay_ms(1000);
+   }
+}

@@ -1,0 +1,56 @@
+
+#include <16F877A.h>
+
+
+
+
+
+
+unsigned int8 MaLed[] = {0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x98};
+
+unsigned int16 chuc,donvi,x;
+void hienthi(unsigned int16 x)
+{
+   chuc=x/10;
+   donvi=x%10;
+   
+   output_d(MaLed[chuc]);
+   output_high(pin_C0);
+   delay_us(100);
+   output_low(pin_C0);
+   
+   output_d(MaLed[donvi]);
+   output_high(pin_C1);
+   delay_us(100);
+   output_low(pin_C1);
+   
+  
+   
+   output_d(0x9c);
+   output_high(pin_C2);
+   delay_us(100);
+   output_low(pin_C2);
+   
+   
+   
+   output_d(0xC6);
+   output_high(pin_C3);
+   delay_us(100);
+   output_low(pin_C3);
+}
+
+void main()
+
+{
+   SET_TRIS_D(0X00);
+   SET_TRIS_C(0X00);
+  delay_ms(1000);
+   while(TRUE){
+   
+     hienthi(x);
+     docADC();
+     x = read_ADC() * 0.488 * 24 / 72;
+      
+    
+   }}
+

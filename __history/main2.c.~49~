@@ -1,0 +1,62 @@
+#include <main2.h>
+
+unsigned int8 MaLed[]={0xC0, 0xF9,0xA4,0x80,0x99, 0x92, 0x82, 0xF8,0x80,0x90};
+
+void _TachSo(unsigned int8 Dulieu, unsigned int8 &HangChuc, unsigned int8 &HangDonVi); 
+void _HienThiNhietDo(unsigned int8 HangChuc, unsigned int8 HangDonVi);
+void _HienThiDoAm(unsigned int8 HangChuc, unsigned int8 HangDonVi);
+void hienthi(unsigned int8 x);
+  unsigned int8 chuc,donvi,QUET;
+     unsigned int8 dh_nhiet_do, dh_nhiet_do2, dh_do_am, dh_do_am2;
+     
+#INT_TIMER1
+void NGAT_TIMER1_QUETLED()
+{
+   
+   hienthi(dh_nhiet_do);
+   
+    CLEAR_INTERRUPT(INT_TIMER1);
+    SETUP_TIMER_1(INT_TIMER1|T1_DIV_BY_8);
+   SET_TIMER1(65161);
+}
+void main()
+{
+
+SET_TRIS_D(1);
+   SET_TRIS_C(1);
+//khai bao bien cuc bo o day
+setup_timer_1(T1_INTERNAL|T1_DIV_BY_8);
+set_timer1(65161);
+enable_interrupts(INT_TIMER1);
+enable_interrupts(GlOBAL);
+  
+ 
+
+   while(TRUE)
+   {
+//TODO: User Code
+      dh_nhiet_do=DHT_GetTemHumi(dh_nhiet_do, dh_nhiet_do2, dh_do_am, dh_do_am2);
+  
+  delay_ms(500);
+      }
+   
+
+}
+void hienthi(unsigned int8 x)
+{
+
+   chuc=x/10;
+   donvi=x%10;
+   
+   QUET=0b11111110;
+   for(int i=0;i<2;i++)
+   {
+   OUTPUT_C(QUET);
+   OUTPUT_d(Maled[chuc]);
+   Delay_us(200);
+   OUTPUT_D(0xFF);
+   QUET=(QUET<<1)+1;
+   
+ 
+}
+}

@@ -1,0 +1,113 @@
+#include <16F877A.h>
+#fuses HS,NOWDT,NOPROTECT,NOLVP                       
+#use delay(clock = 8000000)
+          // include LCD driver source file
+#use fast_io(B)
+#define DHT11_PIN PIN_B7    // connection pin between DHT11 and mcu
+
+
+short Time_out;
+unsigned int8 T_byte1, T_byte2, RH_byte1, RH_byte2, CheckSum ;
+void start_signal(){
+  output_drive(DHT11_PIN);    // configure connection pin as output
+  output_low(DHT11_PIN);      // connection pin output low
+  delay_ms(25);
+  output_high(DHT11_PIN);     // connection pin output high
+  delay_us(30);
+  output_float(DHT11_PIN);    // configure connection pin as input
+}
+short check_response(){
+  delay_us(40);
+  if(!input(DHT11_PIN)){      // read and test if connection pin is low
+    delay_us(80);
+    if(input(DHT11_PIN)){     // read and test if connection pin is high
+      delay_us(50);
+      return 1;
+    }
+  }
+}
+unsigned int16 Read_Data(){
+  unsigned int16 i, k, _data = 0;        // k is used to count 1 bit reading duration
+  if(Time_out)
+    break;
+  for(i = 0; i < 8; i++){
+    k = 0;
+    while(!input(DHT11_PIN)){           // Wait until DHT11 pin get raised
+      k++;
+      if(k > 100){
+        Time_out = 1;
+        break;
+      }
+      delay_us(1);
+    }
+    delay_us(30);
+    if(!input(DHT11_PIN))
+      bit_clear(_data, (7 - i));        // Clear bit (7 - i)
+    else{
+      bit_set(_data, (7 - i));          // Set bit (7 - i)
+      while(input(DHT11_PIN)){          // Wait until DHT11 pin goes low
+        k++;
+        if(k > 100){
+        Time_out = 1;
+        break;
+      }
+      delay_us(1);}
+    }
+  }
+  return _data;
+}
+
+unsigned int8 MaLed[] = {0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x98};
+
+unsigned int16 chuc,donvi,x;
+void hienthi(unsigned int16 x)
+{
+   chuc=x/10;
+   donvi=x%10;
+   
+   output_d(MaLed[chuc]);
+   output_high(pin_C0);
+   delay_us(100);
+   output_low(pin_C0);
+   
+   output_d(MaLed[donvi]);
+   output_high(pin_C1);
+   delay_us(100);
+   output_low(pin_C1);
+   
+  
+   
+   output_d(0x9c);
+   output_high(pin_C2);
+   delay_us(100);
+   output_low(pin_C2);
+   
+   
+   
+   output_d(0xC6);
+   output_high(pin_C3);
+   delay_us(100);
+   output_low(pin_C3);
+}
+
+void main()
+
+{
+   SET_TRIS_D(0X00);
+   SET_TRIS_C(0X00);
+ 
+   while(TRUE){
+   
+    Time_out = 0;
+    Start_signal();
+        if(check_response()){              
+      RH_byte1 = 50;                 // read RH byte1
+      RH_byte2 = Read_Data();                 // read RH byte2
+      T_byte1 = Read_Data();                  // read T byte1
+      T_byte2 = Read_Data();                  // read T byte2
+      Checksum = Read_Data();                 // read checksum
+     hienthi(50);
+      }
+      
+    
+   }}

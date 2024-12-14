@@ -1,0 +1,63 @@
+
+#include <dht.h>
+unsigned int8 const Maled[10] = {0xC0,0xF9,0xA4,0xB0,0x99,0x92,0x82,0xF8,0x80,0x90};
+unsigned int16 nd;
+
+void hienthi8led7doan(){
+  
+   output_c(MaLed[nd/10]);
+   output_high(pin_D0);
+   delay_us(100);
+   output_low(pin_D0);
+  
+   
+  
+   
+   output_c(MaLed[nd%10]);
+   output_high(pin_D1);
+   delay_us(100);
+   output_low(pin_D1);
+   
+  
+   
+   output_c(0x9c);
+   output_high(pin_D2);
+   delay_us(100);
+   output_low(pin_D2);
+   
+   
+   
+   output_c(0xC6);
+   output_high(pin_D3);
+   delay_us(100);
+   output_low(pin_D3);
+
+}
+#INT_TIMER1
+void NGAT_TIMER1_QUETLED()
+{
+   SET_TIMER1(-5000);
+   hienthi8led7doan();
+}
+void main()
+{  
+   SET_TRIS_D(0X00);
+   SET_TRIS_C(0X00);
+   enable_interrupts(INT_TIMER1);
+   enable_interrupts(GLOBAL);
+   setup_timer_1(T1_INTERNAL|T1_DIV_BY_8);
+   SET_TIMER1(-5000);
+   setup_ADC(ADC_clock_internal);
+   setup_ADC_ports(AN0);
+   set_ADC_channel(0);
+   
+   DELAY_MS(10);
+  
+   while(TRUE)
+   {
+      ND = READ_ADC();
+      ND = ND/2.046;
+     
+      delay_ms(1000);
+   }
+}

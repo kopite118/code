@@ -1,0 +1,7 @@
+>>> Warning 202 "vvvvvvvvvvv.c" Line 9(6,14): Variable never used:   message1
+>>> Warning 202 "vvvvvvvvvvv.c" Line 10(6,14): Variable never used:   message2
+>>> Warning 202 "vvvvvvvvvvv.c" Line 12(24,31): Variable never used:   T_byte2
+>>> Warning 202 "vvvvvvvvvvv.c" Line 12(53,61): Variable never used:   CheckSum
+      Memory usage:   ROM=5%      RAM=11% - 12%
+      0 Errors,  4 Warnings.
+Build Successful.

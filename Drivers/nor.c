@@ -1,0 +1,151 @@
+int1 nor3(int16 in1,int16 in2, int16 out1)
+{ 
+   int1 ok=1;
+   cao(in1);                
+   cao(in2);
+   delay_ms(tg_t); 
+   ok=vao1(out1,ok);
+   thap(in1);                                                    
+   delay_ms(tg_t); 
+   ok=vao1(out1,ok);
+   thap(in2); 
+   delay_ms(tg_t); 
+   ok=vao0(out1,ok);   
+   cao(in1);
+   delay_ms(tg_t); 
+   ok=vao1(out1,ok);  
+   return ok;   
+}    
+
+//======================================== 
+/*int1 and_12p23()     
+{                        
+   int1 ok=1;             
+   cao(p1);                
+   cao(p2); 
+   cao(pp2); 
+   delay_ms(tg_t); 
+   if(input(pp3)==0)
+   {
+      ok=0;
+   }              
+   thap(p1);
+   delay_ms(tg_t); 
+   if(input(pp3)==1)
+   {                   
+      ok=0;
+   }                 
+   thap(pp2); 
+   delay_ms(tg_t); 
+   if(input(pp3)==1)
+   {
+      ok=0;              
+   }
+   thap(p2); 
+   delay_ms(tg_t); 
+   if(input(pp3)==1)
+   {
+      ok=0;              
+   } 
+   cao(pp2);   
+   delay_ms(tg_t);   
+   if(input(pp3)==1)     
+   {
+      ok=0;                                
+   }                      
+   cao(p1);   
+   delay_ms(tg_t);   
+   if(input(pp3)==1)     
+   {                   
+      ok=0;                                
+   }
+   return ok;                                      
+}   
+//======================================== 
+int1 and_3456()              
+{                        
+   int1 ok=1;             
+   cao(p3);                
+   cao(p4); 
+   cao(p5); 
+   delay_ms(tg_t); 
+   if(input(p6)==0)
+   {
+      ok=0;
+   }              
+   thap(p3);
+   delay_ms(tg_t); 
+   if(input(p6)==1)
+   {                   
+      ok=0;
+   }                 
+   thap(p5); 
+   delay_ms(tg_t); 
+   if(input(p6)==1)
+   {
+      ok=0;              
+   }
+   thap(p4); 
+   delay_ms(tg_t); 
+   if(input(p6)==1)
+   {
+      ok=0;              
+   } 
+   cao(p5);   
+   delay_ms(tg_t);   
+   if(input(p6)==1)     
+   {
+      ok=0;                                
+   }                      
+   cao(p3);   
+   delay_ms(tg_t);   
+   if(input(p6)==1)     
+   {                   
+      ok=0;                                
+   }
+   return ok;              
+}  
+//======================================== 
+int1 and_p4567()              
+{                        
+   int1 ok=1;             
+   cao(pp4);                
+   cao(pp5); 
+   cao(pp6); 
+   delay_ms(tg_t); 
+   if(input(pp7)==0)
+   {
+      ok=0;
+   }              
+   thap(pp4);
+   delay_ms(tg_t); 
+   if(input(pp7)==1)
+   {                   
+      ok=0;
+   }                 
+   thap(pp6); 
+   delay_ms(tg_t); 
+   if(input(pp7)==1)
+   {
+      ok=0;              
+   }
+   thap(pp5); 
+   delay_ms(tg_t); 
+   if(input(pp7)==1)
+   {
+      ok=0;              
+   } 
+   cao(pp6);   
+   delay_ms(tg_t);   
+   if(input(pp7)==1)       
+   {
+      ok=0;                                
+   }                      
+   cao(pp4);   
+   delay_ms(tg_t);   
+   if(input(pp7)==1)     
+   {                   
+      ok=0;                                
+   }
+   return ok;              
+}  */                    

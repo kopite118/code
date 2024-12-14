@@ -1,0 +1,86 @@
+[Directories]
+Include=
+Library=
+LinkerScript=
+output=
+
+[defines]
+enabled=0
+chip=1
+D1=
+V1=
+
+[fileformats]
+forcecoff=1
+debug=4
+error=2
+object=0
+list=0
+scratch=0
+sta=1
+tre=1
+expandtree=0
+allerrors=1
+allwarnings=1
+stayupne=3
+stayupoe=0
+
+[PROJECT]
+Target=hrhdrh.hex
+Development_Mode=
+Processor_Text=PIC16C74
+ToolSuite=CCS
+CCSVersion=5.025
+Compiler=PCM
+
+[Target Data]
+BuildTool=C-COMPILER
+OptionString=+FM
+AdditionalOptionString=
+BuildRequired=1
+FileList=hrhdrh.c
+
+[hrhdrh.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[mru-list]
+1=hrhdrh.c
+
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+
+
+[CompilerVersion]
+Fixed=
+
+[ProjectLog]
+Days=1
+D1=14-10-2023
+D1_L=10
+D1_L1=[77738]Project Opened.
+D1_L2=[77810]Project Closed.
+D1_L3=[77821]Project Opened.
+D1_L4=[77873]Started Editing.
+D1_L5=[78175]Stopped Editing.
+TotalEdit=1
+TotalDebug=0
+D1_E=1
+D1_D=0
+D1_L6=[79904]Project Closed.
+D1_L7=[80142]Project Opened.
+D1_L8=[80293]Started Editing.
+D1_L9=[80604]Stopped Editing.
+D1_L10=[80793]Project Closed.
+
+[Opened Files]
+1=..\hhi.c
+2=
+3=
+[Units]
+Count=1
+1=hrhdrh (main)

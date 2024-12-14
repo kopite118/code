@@ -1,0 +1,46 @@
+CCS PCM C Compiler, Version 5.025, 41679               14-Oct-23 22:20
+
+               Filename:   C:\Users\ADMIN\Desktop\New folder (5)\Drivers\hrhdrh.lst
+
+               ROM used:   12 words (0%)
+                           Largest free fragment is 2048
+               RAM used:   4 (2%) at main() level
+                           4 (2%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   004
+0003:  NOP
+.................... #include <16C74.h> 
+.................... //////////// Standard Header file for the PIC16C74 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16C74 
+....................  
+.................... #list 
+....................  
+....................  
+.................... void main() { 
+0004:  MOVF   03,W
+0005:  ANDLW  1F
+0006:  MOVWF  03
+0007:  BSF    03.5
+0008:  BSF    1F.0
+0009:  BSF    1F.1
+000A:  BSF    1F.2
+....................  
+.................... } 
+000B:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3FFF   PLL_DIV_2 VREGSLEEP SOSC_DIG TIMER3C0

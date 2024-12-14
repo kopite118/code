@@ -1,0 +1,11 @@
+#include <loader.h>
+
+void main()
+{
+
+   while(TRUE)
+   {
+      ODO: User LOLCode
+   }
+
+}

@@ -1,0 +1,52 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+008     PSP_DATA
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020     @SCRATCH
+021     @SCRATCH
+021     _RETURN_
+022     @SCRATCH
+023     @SCRATCH
+10D-10E @READ_PROGRAM_MEMORY8.P1
+
+ROM Allocation:
+000004  main
+000004  @cinit1
+00000B  @cinit2
+
+Project Directory:
+    C:\Users\ADMIN\Desktop\New folder (5)\Drivers\
+
+Project Files:
+    hrhdrh.c                                                [14-Oct-23 22:11  CRC=00000000]
+    ..\..\..\..\..\Program Files (x86)\PICC\Devices\16C74.h [18-Apr-14 16:56  CRC=CF235DEE]
+
+Source signature=9E46BBDC
+
+Units:
+    hrhdrh (main)
+
+Compiler Settings:
+    Processor:      PIC16C74
+    Pointer Size:   8
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   hrhdrh.xsym
+    Errors:      hrhdrh.err
+    Ext Symbols: hrhdrh.esym
+    INHX8:       hrhdrh.hex
+    Symbols:     hrhdrh.sym
+    List:        hrhdrh.lst
+    Debug/COFF:  hrhdrh.cof
+    Project:     hrhdrh.ccspjt
+    Call Tree:   hrhdrh.tre
+    Statistics:  hrhdrh.STA

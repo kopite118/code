@@ -1,0 +1,66 @@
+
+#use rs232(UART1, baud = 9600)
+#use fast_io(D)
+#define DHT11_PIN PIN_B0                             // DHT11 Data pin is connected to RD4
+ 
+unsigned int8 T_byte1, T_byte2, RH_byte1, RH_byte2, CheckSum ;
+ 
+void Start_Signal() {
+  output_drive(DHT11_PIN);                            // Configure connection pin as output
+  output_low(DHT11_PIN);                              // Connection pin output low
+  delay_ms(25);
+  output_high(DHT11_PIN);                             // Connection pin output high
+  delay_us(25);
+  output_float(DHT11_PIN);                            // Configure connection pin as input
+}
+ 
+int1 Check_Response() {
+  set_timer1(0);                                      // Set Timer1 value to 0
+  setup_timer_1(T1_INTERNAL | T1_DIV_BY_2);           // Start Timer1 with internal clock source + 2 prescaler
+  while(!input(DHT11_PIN) && get_timer1() < 100);     // Wait until DHT11_PIN becomes high (checking of 80µs low time response)
+  if(get_timer1() > 99)                               // If response time > 99µS  ==> Response error
+    return FALSE;                                     // Return FALSE (Device has a problem with response)
+  else {
+    set_timer1(0);                                    // Set Timer1 value to 0
+    while(input(DHT11_PIN) && get_timer1() < 100);    // Wait until DHT11_PIN becomes low (cheking of 80µs high time response)
+    if(get_timer1() > 99)                             // If response time > 99µS  ==> Response error
+      return FALSE;                                   // Return FALSE (Device has a problem with response)
+    else
+      return TRUE;                                    // Return TRUE (response OK)
+  }
+}
+ 
+int1 Read_Data(int8* dht_data) {
+  int8 i;
+  *dht_data = 0;
+  for(i = 0; i < 8; i++){
+    set_timer1(0);                                    // Set Timer1 value to 0
+    while(!input(DHT11_PIN))                          // Wait until DHT11_PIN becomes high
+      if(get_timer1() > 100) {                        // If low time > 100  ==>  Time out error (Normally it takes 50µs)
+        return TRUE;
+      }
+    set_timer1(0);                                    // Set Timer1 value to 0
+    while(input(DHT11_PIN))                           // Wait until DHT11_PIN becomes low
+      if(get_timer1() > 100) {                        // If high time > 100  ==>  Time out error (Normally it takes 26-28µs for 0 and 70µs for 1)
+        return TRUE;
+      }
+     if(get_timer1() > 50)                            // If high time > 50  ==>  Sensor sent 1
+       *dht_data |= (1 << (7 - i));                   // Set bit (7 - i)
+  }
+  return FALSE;
+}
+ 
+unsigned int8 check(){
+  
+
+    Start_Signal();                                    // Send start signal to the sensor
+ 
+    if(Check_Response()) {                             // Check if there is a response from sensor (If OK start reading humidity and temperature data)
+    // Read (and save) data from the DHT11 sensor and check time out errors
+                                                // If there is no time out error
+        if(CheckSum == ((RH_Byte1 + RH_Byte2 + T_Byte1 + T_Byte2) & 0xFF)) {
+        // If there is no checksum error
+         return T_byte1;                   // Send temperature value to Excel
+                                // Move to next column and start new row
+        }}
+}
